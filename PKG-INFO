@@ -1,0 +1,85 @@
+Metadata-Version: 2.4
+Name: MoSPIMicrodata
+Version: 1.0.0
+Summary: This package can be used to download the data from MoSPI Microdata Portal (https://microdata.gov.in). Kindly call the getDatasets method with First parameter as location to save the data and second Parameter as API key generated from MicroData Portal Profile Section.
+Author: DIID,Ministry of Statistics and Programme Implementation
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Dynamic: author
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-dist
+Dynamic: summary
+
+\# MoSPI Microdata access
+
+
+
+This package can be used to access the Microdata available from MoSPI microdata Portal (https://microdata.gov.in)
+
+
+
+\# Features
+
+
+
+use the getDatasets("Path to save the Microdata","your API key downloaded from MosPI Microdata Portal") to choose 
+
+the Dataset to download.
+
+
+
+For example , you will get the option like this on calling the method
+
+
+
+277:Annual Survey of Industries 2019-20
+
+275:Annual Survey of Industries 2020-21
+
+256:Annual Survey of Industries 2023-24
+
+255:Comprehensive Modular Survey on Education-NSS 80th Round-2025
+
+254:Periodic Labour Force Survey (PLFS), Key Employment Unemployment Indicators for (January 2024 - December 2024)
+
+239:Comprehensive Modular Survey on Telecom-NSS 80th Round-2025
+
+238:Annual Survey of Unincorporated Sector Enterprises (ASUSE) of 2023-2024
+
+237:Household Consumption Expenditure Survey: 2023-24
+
+236:Time Use Survey (TUS), January 2024-December 2024
+
+230:Urban Frame Survey (UFS) Summary Data
+
+224:Household Consumption Expenditure Survey: 2022-23
+
+223:Time Use Survey (TUS), January 2019-December 2019
+
+222:Annual Survey of Unincorporated Sector Enterprises (ASUSE) of 2022-2023
+
+221:Annual Survey of Unincorporated Sector Enterprises (ASUSE) of 2021-2022
+
+220:Comprehensive Annual Modular Survey (CAMS),NSS 79th round: 2022-23
+
+Total pages:13,Page:1 of 13,
+
+Enter Survey index number(put n to Navigate to Next Page): 
+
+
+
+You can choose the Numeric Index no to download the associated datasets
+
+
+
+\## Installation
+
+
+
+pip install package-name
+
+
+
+
+
