@@ -1,6 +1,6 @@
-# MoSPI Microdata Client
+# MoSPI Unit Data Client
 
-[![PyPI version](https://badge.fury.io/py/mospi-microdata.svg)](https://badge.fury.io/py/mospi-microdata)
+[![PyPI version](https://badge.fury.io/py/mospi-unitdata.svg)](https://badge.fury.io/py/mospi-unitdata)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A Python client for downloading microdata from the [MoSPI Microdata Portal](https://microdata.gov.in). 
@@ -14,7 +14,7 @@ This package is used to download the data from the MoSPI Microdata Portal. Speci
 You can install the package directly from PyPI:
 
 ```bash
-pip install mospi-microdata
+pip install mospi-unitdata
 ```
 
 ## Getting an API Key
@@ -35,7 +35,7 @@ To download datasets, use the `getDatasets` method. This method takes two mandat
 2.  **Second parameter (`apiKey`)**: Your API key generated from the [MicroData Portal Profile Section](https://microdata.gov.in/NADA/index.php/auth/profile).
 
 ```python
-from MospiMicrodata import getDatasets
+from MospiUnitdata import getDatasets
 
 # Provide the save location and your API Key
 getDatasets("path/to/save/data", "YOUR_API_KEY")

@@ -1,10 +1,10 @@
-# Contributing to mospi-microdata
+# Contributing to mospi-unitdata
 
-First off, thank you for considering contributing to `mospi-microdata`! It's people like you that make collaborative open-source tools better. 
+First off, thank you for considering contributing to `mospi-unitdata`! It's people like you that make collaborative open-source tools better. 
 
 ## Where do I go from here?
 
-If you've noticed a bug or have a feature request, make sure to check the [Issues](https://github.com/nso-india/mospi-microdata/issues) page to see if someone else has already created a ticket. If not, go ahead and make one.
+If you've noticed a bug or have a feature request, make sure to check the [Issues](https://github.com/nso-india/mospi-unitdata/issues) page to see if someone else has already created a ticket. If not, go ahead and make one.
 
 ## Setting up your development environment
 
