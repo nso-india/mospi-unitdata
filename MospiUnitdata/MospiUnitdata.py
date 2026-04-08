@@ -77,16 +77,38 @@ def list_datasets(api_key: str, page: Optional[int] = None, query: Optional[str]
     return rows
 
 
+def _resolve_dataset_id(dataset_id: str, api_key: str) -> Optional[str]:
+    """Resolve a numeric id to an idno. Returns idno as-is if not numeric."""
+    if not dataset_id.isdigit():
+        return dataset_id
+
+    datasets = list_datasets(api_key)
+    if datasets is None:
+        return None
+
+    for d in datasets:
+        if d["id"] == dataset_id:
+            return d["idno"]
+
+    print(f"No dataset found with id '{dataset_id}'.")
+    return None
+
+
 def list_files(dataset_id: str, api_key: str) -> Optional[List[Dict[str, Any]]]:
     """List files available for a specific dataset.
 
     Args:
-        dataset_id: The 'idno' of the dataset (e.g., 'DDI-IND-MOSPI-ASI-2019-20').
+        dataset_id: The numeric id (e.g., '275') or idno
+            (e.g., 'DDI-IND-NSO-ASI-2020-21') of the dataset.
         api_key: Your MoSPI Microdata Portal API key.
 
     Returns:
         List of file dicts with 'name', 'base64', etc. None on failure.
     """
+    dataset_id = _resolve_dataset_id(dataset_id, api_key)
+    if dataset_id is None:
+        return None
+
     url = f"{BASE_URL}/datasets/{dataset_id}/fileslist"
     headers = {"X-API-KEY": api_key}
 
@@ -104,7 +126,7 @@ def download_file(dataset_id: str, file_name: str, folder_path: str, api_key: st
     """Download a single file from a dataset.
 
     Args:
-        dataset_id: The 'idno' of the dataset.
+        dataset_id: The numeric id or idno of the dataset.
         file_name: Name of the file to download (as shown by list_files).
         folder_path: Directory to save the file into (created if it doesn't exist).
         api_key: Your MoSPI Microdata Portal API key.
@@ -152,7 +174,7 @@ def download_dataset(dataset_id: str, folder_path: str, api_key: str) -> List[st
     """Download all files for a dataset to a local folder.
 
     Args:
-        dataset_id: The 'idno' of the dataset.
+        dataset_id: The numeric id or idno of the dataset.
         folder_path: Directory to save files into (created if it doesn't exist).
         api_key: Your MoSPI Microdata Portal API key.
 
