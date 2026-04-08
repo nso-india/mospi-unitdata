@@ -47,8 +47,14 @@ for d in datasets:
 
 ### List files in a dataset
 
+You can use either the numeric `id` or the `idno` string:
+
 ```python
+# Using idno
 files = list_files("DDI-IND-NSO-ASI-2020-21", "YOUR_API_KEY")
+
+# Using numeric id
+files = list_files("275", "YOUR_API_KEY")
 
 for f in files:
     print(f"{f['name']} ({f.get('size', '?')})")
@@ -57,13 +63,13 @@ for f in files:
 ### Download a single file
 
 ```python
-download_file("DDI-IND-NSO-ASI-2020-21", "ASI_DATA_2020_21_CSV.zip", "./data", "YOUR_API_KEY")
+download_file("275", "ASI_DATA_2020_21_CSV.zip", "./data", "YOUR_API_KEY")
 ```
 
 ### Download all files in a dataset
 
 ```python
-download_dataset("DDI-IND-NSO-ASI-2020-21", "./data", "YOUR_API_KEY")
+download_dataset("275", "./data", "YOUR_API_KEY")
 ```
 
 ### Interactive mode (legacy)
@@ -81,9 +87,9 @@ This opens an interactive prompt to browse and select datasets page by page.
 | Function | Description |
 |----------|-------------|
 | `list_datasets(api_key, page=None, query=None)` | List datasets. Returns all if no page specified. Optional keyword search. |
-| `list_files(dataset_id, api_key)` | List files available in a dataset. |
-| `download_file(dataset_id, file_name, folder_path, api_key)` | Download a single file from a dataset. |
-| `download_dataset(dataset_id, folder_path, api_key)` | Download all files from a dataset. |
+| `list_files(dataset_id, api_key)` | List files available in a dataset. Accepts numeric id or idno. |
+| `download_file(dataset_id, file_name, folder_path, api_key)` | Download a single file from a dataset. Accepts numeric id or idno. |
+| `download_dataset(dataset_id, folder_path, api_key)` | Download all files from a dataset. Accepts numeric id or idno. |
 | `getDatasets(folder_path, api_key)` | Interactive browser and downloader (legacy). |
 
 ## Requirements
