@@ -4,14 +4,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A Python client for downloading microdata from the [MoSPI Microdata Portal](https://microdata.gov.in). 
-This package provides a convenient interface to browse and download datasets from the Government of India's National Statistical Office (NSO).
-
-### About
-This package is used to download the data from the MoSPI Microdata Portal. Specifically, you can browse available datasets interactively and download them by calling the provided methods with your API key.
+This package provides a convenient interface to browse, search, and download datasets from the Government of India's National Statistical Office (NSO).
 
 ## Installation
-
-You can install the package directly from PyPI:
 
 ```bash
 pip install mospi-unitdata
@@ -30,36 +25,71 @@ To use this package, you need an API key from the MoSPI Microdata Portal:
 
 ## Usage
 
-To download datasets, use the `getDatasets` method. This method takes two mandatory parameters:
-1.  **First parameter (`folderPath`)**: The location/folder on your computer where you want to save the downloaded data.
-2.  **Second parameter (`apiKey`)**: Your API key generated from the [MicroData Portal Profile Section](https://microdata.gov.in/NADA/index.php/auth/profile).
+```python
+from MospiUnitdata import list_datasets, list_files, download_file, download_dataset
+```
+
+### List datasets
+
+```python
+# List all datasets
+datasets = list_datasets("YOUR_API_KEY")
+
+# List a specific page
+datasets = list_datasets("YOUR_API_KEY", page=1)
+
+# Search by keyword
+datasets = list_datasets("YOUR_API_KEY", query="labour force")
+
+for d in datasets:
+    print(f"{d['id']} ({d['idno']}): {d['title']}")
+```
+
+### List files in a dataset
+
+```python
+files = list_files("DDI-IND-NSO-ASI-2020-21", "YOUR_API_KEY")
+
+for f in files:
+    print(f"{f['name']} ({f.get('size', '?')})")
+```
+
+### Download a single file
+
+```python
+download_file("DDI-IND-NSO-ASI-2020-21", "ASI_DATA_2020_21_CSV.zip", "./data", "YOUR_API_KEY")
+```
+
+### Download all files in a dataset
+
+```python
+download_dataset("DDI-IND-NSO-ASI-2020-21", "./data", "YOUR_API_KEY")
+```
+
+### Interactive mode (legacy)
 
 ```python
 from MospiUnitdata import getDatasets
 
-# Provide the save location and your API Key
-getDatasets("path/to/save/data", "YOUR_API_KEY")
+getDatasets("./data", "YOUR_API_KEY")
 ```
 
-The function provides an interactive prompt to browse through the available datasets:
+This opens an interactive prompt to browse and select datasets page by page.
 
-```text
-277:Annual Survey of Industries 2019-20
-275:Annual Survey of Industries 2020-21
-256:Annual Survey of Industries 2023-24
-...
-Total pages:13,Page:1 of 13,
-Enter Survey index number(put n to Navigate to Next Page): 
-```
+## API Reference
 
-Type the numeric index to download the associated dataset, or `n` to view the next page.
+| Function | Description |
+|----------|-------------|
+| `list_datasets(api_key, page=None, query=None)` | List datasets. Returns all if no page specified. Optional keyword search. |
+| `list_files(dataset_id, api_key)` | List files available in a dataset. |
+| `download_file(dataset_id, file_name, folder_path, api_key)` | Download a single file from a dataset. |
+| `download_dataset(dataset_id, folder_path, api_key)` | Download all files from a dataset. |
+| `getDatasets(folder_path, api_key)` | Interactive browser and downloader (legacy). |
 
 ## Requirements
 - Python 3.9+
 - `requests` >= 2.31.0
 
-
 ## License
 
 This project is licensed under the MIT License.
-
